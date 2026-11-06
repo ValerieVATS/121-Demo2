@@ -141,6 +141,10 @@ We would need to change: [`src/main.ts`](src/main.ts):
 
 No rectangle change should be needed in `src/style.css`, `index.html`, or `vite.config.js`.
 
+### Refactoring - Data Clumps
+
+Before refactoring every tool field was optional. TypeScript allowed incomplete tool definitions, while input handling used defaults. The new code uses kind to identify each tool’s required properties. Incomplete definitions now fail type checking instead of producing unexpected behavior. This makes adding presets safer and reduces input handling’s responsibility. This change supports a clearer responsibility boundary.
+
 ## Credits and references
 
 - [MDN Canvas tutorial](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial)

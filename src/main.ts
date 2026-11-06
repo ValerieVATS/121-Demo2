@@ -36,14 +36,21 @@ type DrawCommand = {
   draw: (target: CanvasRenderingContext2D) => void;
 };
 
-type Tool = {
+type MarkerTool = {
   name: string;
-  kind: "marker" | "sticker";
-  color?: string;
-  width?: number;
-  text?: string;
-  size?: number;
+  kind: "marker";
+  color: string;
+  width: number;
 };
+
+type StickerTool = {
+  name: string;
+  kind: "sticker";
+  text: string;
+  size: number;
+};
+
+type Tool = MarkerTool | StickerTool;
 
 const commands: DrawCommand[] = [];
 const redoStack: DrawCommand[] = [];
@@ -145,14 +152,14 @@ canvas.addEventListener("pointerdown", (event) => {
   if (selectedTool.kind === "marker") {
     currentStroke = {
       points: [start],
-      color: selectedTool.color ?? "black",
-      width: selectedTool.width ?? 4,
+      color: selectedTool.color,
+      width: selectedTool.width,
     };
   } else {
     currentSticker = {
       position: start,
-      text: selectedTool.text ?? "",
-      size: selectedTool.size ?? 40,
+      text: selectedTool.text,
+      size: selectedTool.size,
     };
   }
 
