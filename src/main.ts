@@ -87,6 +87,7 @@ function drawStroke(stroke: Stroke, target: CanvasRenderingContext2D) {
 
 function drawSticker(sticker: Sticker, target: CanvasRenderingContext2D) {
   target.save();
+  target.fillStyle = "black";
   target.font = `${sticker.size}px Arial`;
   target.textAlign = "center";
   target.textBaseline = "middle";
